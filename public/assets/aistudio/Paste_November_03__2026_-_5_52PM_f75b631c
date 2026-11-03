@@ -1,0 +1,913 @@
+# PROJECT: IT Lab Solutions Limited — Professional IT Service Management & Business Operations Web Panel
+
+## 1. Your Role
+
+Act as a Senior Full-Stack Software Engineer, Software Architect, UI/UX Designer, Database Engineer, Security Engineer, and Business Management System Developer.
+
+Build a complete, professional, production-ready Web Panel for IT Lab Solutions Limited.
+
+This is a real business management application, not just a dashboard design or static HTML prototype.
+
+The system must have a professional interface, a secure backend, a persistent database, role-based permissions, working forms, functional reports, printing, notifications, and proper authentication.
+
+Before starting, inspect the existing project files and determine the current technology stack. If an existing project is provided, preserve its useful functionality and improve it without unnecessarily breaking existing features.
+
+Do not merely provide instructions or sample code. Implement the application, test its functionality, and explain how to run and deploy it.
+
+# 2. Main Application Modules
+
+Create the following modules:
+
+1. Admin Dashboard
+2. Service Management
+3. Service Schedule Management
+4. Technician Daily Reports
+5. Free Computer Lab Service Management
+6. Customer Management
+7. Quotation Management
+8. Product Management
+9. Customer Ledger
+10. Payment Collection
+11. TA/DA Expense Management
+12. Customer Follow-up Management
+13. Technician Management
+14. HR Management
+15. Reception Management
+16. Notifications
+17. Reports and Analytics
+18. User Management and Permissions
+19. Activity Logs
+20. System Settings
+
+All modules must use a shared database and work together.
+
+# 3. Authentication, Login, Logout & Email Verification
+
+Create a secure authentication system.
+
+Requirements:
+
+- Login page with email and password.
+- Logout button.
+- Email verification for HR, Receptionist, and Technician accounts.
+- Email verification link with a secure, expiring token.
+- Resend verification email option.
+- Forgot password and password reset.
+- Change password.
+- Secure session management.
+- Role-based redirects after login.
+- Protected routes for every role.
+- Account activation and deactivation by Admin.
+- Show clear errors for invalid credentials and unverified email addresses.
+- Do not store passwords in plain text.
+- Use a trusted authentication provider or securely implemented server-side authentication.
+
+HR, Receptionist, and Technician must log in using their own verified email addresses.
+
+Admin must be able to create user accounts, assign roles, activate/deactivate accounts, and manage permissions.
+
+Use environment variables for email provider credentials, API keys, database secrets, and other sensitive settings. Never expose secrets in frontend code.
+
+# 4. Separate Role-Based Panels
+
+Create separate dashboard experiences for each role.
+
+## A. Admin Panel
+
+Admin has full access to the entire application.
+
+Admin can:
+
+- Create, edit, approve, and manage service records.
+- Manage customers and products.
+- Assign technicians and schedules.
+- Approve or reject new service requests submitted by technicians.
+- Manage quotations and follow-ups.
+- Manage payments, expenses, and customer ledgers.
+- Review TA/DA claims.
+- Generate all reports.
+- Manage users and permissions.
+- Review activity logs.
+- Configure company details, reminders, and notification settings.
+- Print and export authorized reports.
+
+Admin can edit all permitted records. Destructive actions must require confirmation and be logged.
+
+## B. HR Panel
+
+HR can view the records and reports permitted by the Admin.
+
+HR functions:
+
+- View technician schedules.
+- View service assignments and completion updates.
+- View service history and customer follow-up information.
+- Record telephone follow-up notes.
+- Record customer responses.
+- Record the date and time of follow-up.
+- Schedule the next follow-up date.
+- Assign follow-up responsibility when authorized.
+- View quotation follow-up status.
+- View authorized TA/DA reports.
+- Generate date-range reports for accessible information.
+
+HR must not automatically receive permission to edit financial records, change service assignments, delete data, or access restricted information.
+
+## C. Receptionist Panel
+
+Receptionists need a simplified, professional interface.
+
+Receptionists can:
+
+- Search customers by name, phone number, or Service ID.
+- View customer service history.
+- View service status.
+- Check whether a product is ready for delivery.
+- View pending, delivered, and returned services.
+- View today's technician schedules.
+- View authorized technician work updates.
+- Call customers to provide updates.
+- Record customer communication notes.
+- Record customer responses and next follow-up dates.
+- View quotation status and authorized follow-up information.
+- Print authorized service receipts and reports.
+- Register new customers and service requests if permitted.
+
+Receptionists must not edit technical findings, change technician assignments, approve service schedules, or modify financial transactions unless Admin grants specific permission.
+
+## D. Technician Panel
+
+Technicians must have their own secure login and dashboard.
+
+Technicians can:
+
+- View only their assigned schedules.
+- View assigned service jobs.
+- View customer details required to perform assigned work.
+- Update service progress.
+- Enter technical findings.
+- Record work completed.
+- Add products and parts used.
+- Enter service charges and collection information where authorized.
+- Record handover information.
+- Submit daily work reports.
+- Submit new service requests.
+- Submit TA/DA expenses.
+- View their own submitted expense claims and approval status.
+
+Technicians must not delete records or approve their own submitted service requests, expense claims, or schedules.
+
+Every important update must be recorded in the activity log and notify Admin.
+
+# 5. Service Management
+
+Create a complete IT product repair and service receiving system.
+
+## A. Service Receiving Form
+
+Include:
+
+- Auto-generated unique Service ID.
+- Customer name selected from a searchable dropdown.
+- Customer ID.
+- Mobile number.
+- WhatsApp number.
+- Customer address.
+- Product category.
+- Brand.
+- Model.
+- Serial number.
+- Accessories received.
+- Customer-reported problems.
+- Product physical condition.
+- Received date and time.
+- Received by.
+- Initial estimated delivery date.
+- Initial estimated cost, if known.
+- Additional remarks.
+
+Product categories must include Desktop Computer, Laptop, Monitor, Printer, CCTV, DVR/NVR, Router, Networking Equipment, UPS, and Other IT Products.
+
+Existing customers must be selectable from the dropdown. Provide an option to add a new customer without leaving the service form.
+
+## B. Customer Receipt and Barcode Sticker
+
+After saving a service record, provide two separate print options:
+
+1. Customer Service Receipt.
+2. Product Barcode Sticker.
+
+Receipt requirements:
+
+- Company logo and name.
+- Company address and contact details.
+- Unique Service ID.
+- Customer information.
+- Product details.
+- Accessories received.
+- Reported problems.
+- Received date.
+- Estimated delivery date.
+- Terms and conditions.
+
+Barcode requirements:
+
+- Generate a unique barcode for each service record.
+- Print the barcode sticker separately.
+- Include the Service ID and a short customer/product reference.
+- Scan the barcode to open the matching service record after authorized login.
+- Do not encode sensitive customer information directly in the barcode.
+
+Support standard desktop barcode scanners.
+
+## C. Service Work Updates
+
+Every service record must contain:
+
+- Assigned technician.
+- Inspection date.
+- Problems identified.
+- Work required.
+- Work completed.
+- Products and spare parts used.
+- Parts cost.
+- Labour/service charge.
+- Discount.
+- VAT/tax if applicable.
+- Total bill.
+- Amount received.
+- Outstanding balance.
+- Customer approval status.
+- Customer communication history.
+- Expected delivery date.
+- Actual delivery date.
+- Delivered by employee.
+- Received by customer or representative.
+- Handover person's name and phone number.
+- Additional remarks.
+
+Maintain a full history of all updates.
+
+## D. Service Status
+
+Implement these statuses:
+
+- Received
+- Under Inspection
+- Waiting for Customer Approval
+- In Progress
+- Waiting for Parts
+- Pending
+- Ready for Delivery
+- Delivered
+- Returned / Not Repaired
+- Cancelled
+
+If the customer has been informed but has not collected the product, keep the service pending or ready for delivery as appropriate. Do not mark it Delivered until the actual handover is recorded.
+
+For Returned / Not Repaired, record the reason, return date, responsible employee, and any applicable charges or payment.
+
+## E. 30-Day WhatsApp Reminder
+
+Create an integration-ready WhatsApp Business Platform/API module.
+
+Requirements:
+
+- Find eligible undelivered products that have reached 30 days since receiving.
+- Send an approved WhatsApp reminder to the customer's registered WhatsApp number.
+- Store the reminder timestamp and delivery status.
+- Avoid duplicate reminders through configurable reminder rules.
+- Stop further collection reminders after delivery.
+- Retry failed messages according to a configurable policy.
+- Display failed messages in an Admin follow-up queue.
+- Allow authorized staff to record manual follow-up if automated messaging is unavailable.
+
+The reminder scheduler must run on the backend. Do not rely on the browser being open.
+
+Use approved WhatsApp templates where required. If API credentials are unavailable, implement a clear configuration screen and a test mode rather than falsely reporting that messages were sent.
+
+## F. Service Date-Range Reports
+
+Create a report page with start date, end date, status, technician, and customer filters.
+
+Show:
+
+- Total services received.
+- Services in progress.
+- Pending services.
+- Ready for delivery.
+- Delivered services.
+- Returned / Not Repaired.
+- Cancelled services.
+- Total billed service amount.
+- Total payments received.
+- Total outstanding balance.
+- Parts costs.
+- Other recorded service expenses.
+- Net service profit where cost data is complete.
+
+Provide summary cards, searchable tables, pagination, A4 printing, and PDF export.
+
+# 6. Service Schedule Management
+
+Create a field service scheduling and technician dispatch module.
+
+## A. Schedule Creation
+
+Schedule form must include:
+
+- Auto-generated Schedule ID.
+- Customer or institution dropdown.
+- Customer type.
+- Location and address.
+- Contact person's name.
+- Contact person's mobile number.
+- Service category.
+- Problem description.
+- Assigned technician or team.
+- Schedule date and time.
+- Priority.
+- Admin instructions.
+- Expected completion time.
+- Schedule status.
+
+Statuses:
+
+- New Request
+- Awaiting Approval
+- Approved
+- Scheduled
+- Assigned
+- In Progress
+- Completed
+- Pending
+- Rescheduled
+- Cancelled
+
+Prevent scheduling conflicts where practical and show warnings before assigning a technician to overlapping visits.
+
+## B. Existing Customer Dropdown
+
+Use the same centralized customer database across Service Management, Service Schedule, and Quotation Management.
+
+When selecting a customer, automatically populate available customer details.
+
+Home service customers and regular institutional customers must be reusable without entering their information repeatedly.
+
+## C. Technician Daily Work Report
+
+Technicians must be able to submit a report for every assigned visit.
+
+Include:
+
+- Schedule ID.
+- Customer name.
+- Service location.
+- Arrival time.
+- Departure time.
+- Work performed.
+- Problems found.
+- Work completed.
+- Products and parts used.
+- Quantity of each product.
+- Service charge.
+- Amount collected.
+- Outstanding amount.
+- Handover person's name.
+- Handover person's phone number.
+- Customer feedback.
+- Follow-up required.
+- Recommended next visit date.
+- Supporting photographs and documents.
+- Additional remarks.
+
+Technicians can save drafts and submit completed reports.
+
+Admin and authorized HR/Reception users can view reports according to their permissions.
+
+## D. New Service Call Requests
+
+Technicians must be able to submit new service calls discovered during field visits.
+
+The submission form must contain:
+
+- Institution/customer name.
+- Contact person.
+- Phone number.
+- Address.
+- Problem details.
+- Service required.
+- Urgency.
+- Date reported.
+- Technician's remarks.
+
+New requests must appear in the Admin Approval Queue.
+
+The technician may submit and track the request but cannot independently confirm the service date.
+
+Only Admin or an authorized manager can approve, reject, assign a technician, and confirm the schedule date.
+
+Approved requests should automatically appear in the schedule module.
+
+Notify Admin when a new request is submitted and when an approval decision is made.
+
+## E. Free Computer Lab Service
+
+Create a separate service category for free computer lab maintenance at schools and institutions.
+
+Include:
+
+- Institution name.
+- Visit date.
+- Assigned technician.
+- Total computers.
+- Working computers.
+- Non-working computers.
+- Problems found.
+- Work completed.
+- Required parts.
+- Lab condition.
+- Next visit recommendation.
+- Supporting photographs.
+- Report submission date.
+
+Allow repeat visits under the same institution profile and generate institution-wise history reports.
+
+## F. Schedule Printing and Reports
+
+Generate:
+
+- Daily schedule sheet.
+- Technician-wise schedule.
+- Institution-wise service history.
+- Daily work completion report.
+- Pending schedule report.
+- New service request report.
+- Service collection report.
+- Parts usage report.
+
+All reports must support date-range filtering, A4 printing, and PDF export.
+
+# 7. Quotation Management
+
+Build a complete professional IT hardware quotation system.
+
+## A. Product Database
+
+Create a reusable product database containing:
+
+- Product ID.
+- Product name.
+- Category.
+- Brand.
+- Model.
+- Description.
+- Unit.
+- Purchase price, visible only to authorized users.
+- Selling price.
+- VAT percentage.
+- Tax percentage.
+- Warranty period.
+- Product status.
+
+Product categories must include Desktop Computer, Laptop, CCTV Camera, DVR/NVR, Networking Equipment, Printer, Monitor, UPS, RAM, SSD, HDD, Keyboard, Mouse, Accessories, and Other IT Products.
+
+Allow product search and selection from a dropdown. Do not require repeated manual product entry.
+
+## B. Quotation Creation
+
+Include:
+
+- Auto-generated quotation number.
+- Customer or company name.
+- Contact person.
+- Address.
+- Phone number.
+- Quotation date.
+- Valid until date.
+- Prepared by.
+- Product selection.
+- Product description.
+- Quantity.
+- Unit price.
+- Discount per product.
+- Product-wise VAT and tax.
+- Separate quotation-level discount.
+- Additional VAT and tax.
+- Warranty period for each item.
+- Total quantity.
+- Subtotal.
+- Total discount.
+- VAT/tax breakdown.
+- Grand total.
+- Terms and conditions.
+- Delivery time.
+- Payment terms.
+
+Clearly distinguish inclusive and exclusive VAT/tax calculations. Avoid double-counting tax.
+
+## C. Quotation Follow-up
+
+Each quotation must have:
+
+- Quotation number.
+- Customer.
+- Issue date.
+- Quotation amount.
+- Prepared by.
+- Current status.
+- Last contact date.
+- Follow-up notes.
+- Next follow-up date.
+- Assigned follow-up person.
+- Outcome.
+- Reason for rejection, where applicable.
+
+Statuses:
+
+- Draft
+- Sent
+- Follow-up Required
+- Under Discussion
+- Approved
+- Rejected
+- Expired
+- Completed / Won
+- Closed / Lost
+
+Provide a clearly visible action to mark a quotation as Completed / Won when the customer confirms the order.
+
+Do not confuse a quotation marked Won with a fully paid invoice.
+
+If a quotation is approved, allow conversion to a sales order or invoice without re-entering the products.
+
+## D. Quotation Reports
+
+Allow filtering by date range, customer, prepared by, follow-up person, status, and amount.
+
+Reports must show:
+
+- All quotations issued within the selected period.
+- Customer name.
+- Quotation number.
+- Issue date.
+- Quotation amount.
+- Last follow-up date.
+- Next follow-up date.
+- Current status.
+- Won/lost outcomes.
+- Total quotation value.
+- Total won value.
+- Conversion rate.
+
+Provide professional A4 printing and PDF export.
+
+# 8. Customer Management & Ledger
+
+Create a centralized customer database.
+
+Customer fields:
+
+- Auto Customer ID.
+- Individual or institution name.
+- Contact person.
+- Mobile number.
+- WhatsApp number.
+- Email.
+- Address.
+- Customer type.
+- Notes.
+- Account status.
+
+The customer profile must display:
+
+- Total services.
+- Active services.
+- Completed services.
+- Total service charges.
+- Total quotation value.
+- Total payments.
+- Total outstanding balance.
+- Complete communication history.
+- Complete transaction history.
+
+Create a ledger with:
+
+- Transaction date.
+- Transaction reference.
+- Description.
+- Debit.
+- Credit.
+- Payment method.
+- Running balance.
+- Recorded by.
+
+Track partial payments, advances, adjustments, and outstanding balances.
+
+Only authorized users can post financial transactions. Do not change historical transactions silently; use properly logged adjustments or reversals.
+
+# 9. TA/DA Expense Management
+
+Create a separate TA/DA claim module for technicians and authorized staff.
+
+## A. Expense Submission
+
+Technicians can submit expenses for their field visits.
+
+Fields:
+
+- Auto Expense Claim ID.
+- Employee name.
+- Employee ID.
+- Related Schedule ID.
+- Customer/institution.
+- Travel date.
+- From location.
+- To location.
+- Transport expense.
+- Food allowance.
+- Daily allowance.
+- Other approved expense categories.
+- Total claimed amount.
+- Explanation.
+- Receipt/photo attachment.
+- Submission date.
+
+Calculate the total automatically.
+
+## B. Approval Workflow
+
+Statuses:
+
+- Draft
+- Submitted
+- Under Review
+- Approved
+- Rejected
+- Paid
+
+Workflow:
+
+1. Technician submits the claim.
+2. Admin receives a notification.
+3. Admin reviews the claim and supporting evidence.
+4. Admin approves, rejects, or requests clarification.
+5. Approved claims can be marked as Paid by an authorized user.
+6. The technician can view the current status.
+
+Technicians must not approve their own expenses or mark claims as paid.
+
+## C. TA/DA Reports
+
+Generate date-range reports with:
+
+- Employee-wise expenses.
+- Schedule-wise expenses.
+- Daily expenses.
+- Monthly expenses.
+- Total submitted claims.
+- Total approved claims.
+- Total rejected claims.
+- Total paid claims.
+- Unpaid approved claims.
+
+Provide filters, summary cards, A4 printing, and PDF export.
+
+# 10. Customer Follow-up & Communication
+
+Create a centralized follow-up system for service customers and quotations.
+
+Each follow-up record must contain:
+
+- Customer.
+- Related Service ID or Quotation ID.
+- Contact method.
+- Follow-up date and time.
+- Employee who contacted the customer.
+- Customer response.
+- Notes.
+- Next follow-up date.
+- Follow-up status.
+
+HR and Receptionists can add follow-up notes to records they are authorized to access.
+
+Maintain a chronological communication history. Never overwrite earlier notes.
+
+Create reminders for overdue follow-ups and notify responsible users.
+
+# 11. Financial Reports
+
+Create clear financial reporting with date-range filtering.
+
+Separate these figures:
+
+- Billed revenue.
+- Cash/bank/mobile payments received.
+- Outstanding receivables.
+- Parts costs.
+- TA/DA expenses.
+- Other recorded expenses.
+- Gross profit.
+- Net profit where all relevant cost data is available.
+
+Do not treat quotation value as realized income.
+
+Do not treat outstanding invoices as collected cash.
+
+Prevent duplicate payment posting and use server-side validation for every financial transaction.
+
+# 12. Dashboard Design
+
+Create separate dashboards for Admin, HR, Receptionist, and Technician.
+
+Admin dashboard:
+
+- Total services.
+- Active services.
+- Pending services.
+- Ready for delivery.
+- Delivered services.
+- Overdue service records.
+- Today's schedules.
+- New service requests awaiting approval.
+- Pending quotations.
+- Follow-ups due today.
+- Monthly billed revenue.
+- Payments received.
+- Customer outstanding.
+- TA/DA claims awaiting review.
+
+HR dashboard:
+
+- Staff schedules.
+- Service progress.
+- Follow-ups due.
+- Recent work updates.
+- Authorized reports.
+
+Reception dashboard:
+
+- Recent customer service records.
+- Pending delivery list.
+- Today's service updates.
+- Follow-ups due.
+- Customer search.
+
+Technician dashboard:
+
+- Today's assigned schedules.
+- Upcoming visits.
+- Assigned service jobs.
+- Pending work updates.
+- New service request submissions.
+- TA/DA claim status.
+
+All dashboard statistics must come from real database queries, not hardcoded sample numbers.
+
+# 13. Reports & Printing
+
+Create a centralized report module.
+
+All relevant reports must support:
+
+- Start date.
+- End date.
+- Status filters.
+- Customer filters.
+- Employee/technician filters.
+- Search.
+- Pagination.
+- Print.
+- A4 print layout.
+- PDF export.
+- CSV export where appropriate.
+
+Include company name, report title, selected date range, generation timestamp, and page numbering where practical.
+
+Ensure printed documents hide navigation menus, buttons, and irrelevant screen elements.
+
+Use a proper PDF generation solution when browser printing is insufficient.
+
+# 14. Professional UI/UX
+
+Create a premium, modern business interface for IT Lab Solutions Limited.
+
+Design requirements:
+
+- Professional corporate appearance.
+- Clean sidebar navigation.
+- Top navigation with notifications and user profile.
+- Separate role-specific menus.
+- Responsive desktop, tablet, and mobile layouts.
+- Consistent typography and spacing.
+- Searchable dropdowns.
+- Professional data tables.
+- Summary cards and charts.
+- Clear status labels.
+- Confirmation dialogs.
+- Form validation.
+- Loading states.
+- Empty states.
+- Success and error messages.
+- Light and dark modes if practical.
+- Accessible forms and keyboard navigation.
+
+Use the company logo if provided. If not provided, create a clean text-based company identity without inventing a logo file.
+
+Do not overcrowd pages with excessive colors or unnecessary animations.
+
+# 15. Technical Architecture
+
+Inspect the existing project before choosing or changing the stack.
+
+If there is no existing stack, propose a maintainable architecture such as:
+
+- Frontend: React with TypeScript.
+- UI: A consistent professional component system.
+- Backend: Secure server-side APIs.
+- Database: PostgreSQL or another appropriate relational database.
+- Authentication: A trusted provider or secure server-side authentication.
+- File storage: Private storage for authorized documents and images.
+- Email: Configured transactional email provider.
+- WhatsApp: Official WhatsApp Business Platform/API integration.
+- Scheduled jobs: Server-side scheduler or background worker.
+
+Do not assume external services are configured. Provide setup instructions and environment variable examples.
+
+Create database migrations, validation schemas, seed scripts for development, and documented API endpoints.
+
+Use a shared API and database architecture so future Android and iOS apps can use the same backend.
+
+# 16. Security & Data Integrity
+
+Security is mandatory.
+
+- Enforce role permissions on the server, not only in the frontend.
+- Validate all user input.
+- Protect against unauthorized record access.
+- Secure file uploads.
+- Use parameterized database queries or a safe ORM.
+- Protect authentication and password reset flows.
+- Use expiring email verification tokens.
+- Add rate limiting where appropriate.
+- Keep credentials and secrets out of source control.
+- Log important changes.
+- Restrict sensitive financial information to authorized roles.
+- Provide a backup and recovery strategy.
+- Avoid permanent deletion of important business records; prefer authorized archival or soft deletion.
+- Keep audit history for sensitive operations.
+
+# 17. Required Development Workflow
+
+Work in the following order:
+
+Phase 1: Inspect the project and prepare the architecture.
+
+Phase 2: Design the database schema, relationships, and role-permission matrix.
+
+Phase 3: Build authentication, email verification, login, logout, and role-based dashboards.
+
+Phase 4: Build Customer Management and Product Management.
+
+Phase 5: Build Service Management, receipts, barcode stickers, and status history.
+
+Phase 6: Build Service Schedule Management and technician daily reports.
+
+Phase 7: Build Quotation Management and follow-up tracking.
+
+Phase 8: Build Customer Ledger, payments, expenses, and TA/DA.
+
+Phase 9: Build WhatsApp integration and background reminders.
+
+Phase 10: Build date-range reports, A4 printing, and PDF export.
+
+Phase 11: Test permissions, calculations, forms, workflows, and integrations.
+
+Phase 12: Prepare deployment documentation, environment configuration, and database backup instructions.
+
+## Final Acceptance Criteria
+
+The project is complete only when:
+
+- All four roles can log in and see their correct panels.
+- Email verification works.
+- Login and logout work correctly.
+- All important forms save data persistently.
+- Customer and product dropdowns use shared database records.
+- Service receipts and barcode stickers can be printed.
+- Technicians can update only authorized assignments.
+- Admin approval is required for new technician service requests.
+- Quotations support product selection, warranty, VAT, tax, discounts, and follow-ups.
+- Customer ledgers and financial calculations are consistent.
+- TA/DA claims follow the approval workflow.
+- Date-range reports return accurate results.
+- A4 printing and PDF exports work.
+- WhatsApp reminders are properly integrated or clearly marked as requiring configuration.
+- Unauthorized users cannot access restricted records or APIs.
+- There are no non-functional buttons presented as completed features.
+
+Do not stop after generating a visual prototype. Implement, test, and document a working application.
+
+If the project is too large for one response, implement it in coherent phases, preserve the working code, and clearly list completed and remaining tasks.
+
+Start by inspecting the existing project and presenting a concise implementation plan. Then begin implementation rather than stopping at the plan.

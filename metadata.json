@@ -1,0 +1,6 @@
+{
+  "name": "IT Lab Solutions Limited - Operations Web Panel",
+  "description": "Enterprise IT Service Management, Workshop & Field Service Scheduling, Quotations, Customer Ledger, Technician Reports, and Business Operations Web Panel for IT Lab Solutions Limited.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
